@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RIK Android App</string>
+    <string name="stand_up">STAND UP</string>
+    <string name="sit_down">SIT DOWN</string>
+</resources>
