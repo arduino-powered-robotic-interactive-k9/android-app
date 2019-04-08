@@ -3,18 +3,28 @@ package com.example.android_app;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.util.Locale;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int REQ_CODE_ENABLE_BLUETOOTH = 1;
+    private static final int REQ_CODE_SEND_VOICE = 2;
+
     protected static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     protected static final String MAC_ADDRESS = "98:D3:51:F9:4C:83";
@@ -29,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     protected Button downButton;
     protected Button walkButton;
     protected Button connectButton;
+    protected ImageButton micButton;
+
+    private TextView sendMessageText;
+    private TextView sentText;
 
     protected boolean connected;
 
@@ -43,13 +57,52 @@ public class MainActivity extends AppCompatActivity {
         downButton = findViewById(R.id.down_button);
         walkButton = findViewById(R.id.walk_button);
         connectButton = findViewById(R.id.connect_button);
+        micButton = findViewById(R.id.mic_button);
 
-        connected = false;
+        sendMessageText = findViewById(R.id.send_message_text);
+        sentText = findViewById(R.id.sent_text);
+
+        setConnected(false);
+
+        standButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send("stand");
+            }
+        });
+
+        bowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send("bow");
+            }
+        });
+
+        straightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send("straight");
+            }
+        });
+
+        downButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send("down");
+            }
+        });
+
+        walkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                send("walk");
+            }
+        });
 
         connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 connectButton.setText(R.string.connect_button_connecting);
-
                 if (!connected) {
                     connect();
                 } else {
@@ -57,6 +110,47 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        micButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendVoice();
+            }
+        });
+    }
+
+    protected void setConnected(boolean value) {
+        connected = value;
+
+        standButton.setEnabled(value);
+        bowButton.setEnabled(value);
+        straightButton.setEnabled(value);
+        downButton.setEnabled(value);
+        walkButton.setEnabled(value);
+        micButton.setEnabled(value);
+
+        if (value) {
+            standButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            bowButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            straightButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            downButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            walkButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            micButton.setAlpha(255);
+            sentText.setAlpha(1);
+            sendMessageText.setAlpha(1);
+
+        } else {
+            standButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
+            bowButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
+            straightButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
+            downButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
+            walkButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
+            micButton.setAlpha(50);
+            sentText.setAlpha(0);
+            sendMessageText.setAlpha(0);
+
+            sentText.setText("");
+        }
     }
 
     protected void connect() {
@@ -72,7 +166,12 @@ public class MainActivity extends AppCompatActivity {
         // Enable bluetooth.
         if (!this.adapter.isEnabled()) {
             Intent enable = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enable, 1);
+            try {
+                startActivityForResult(enable, 1);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getBaseContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                connectButton.setText(R.string.connect_button_disconnected);
+            }
         } else {
             // Bluetooth already enabled.
             setupConnection();
@@ -88,18 +187,67 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Something went wrong", Toast.LENGTH_LONG).show();
         }
 
+        setConnected(false);
         connectButton.setText(R.string.connect_button_disconnected);
+    }
+
+    protected void sendVoice() {
+        Intent voice = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        voice.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        voice.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        voice.putExtra(RecognizerIntent.EXTRA_PROMPT, "Tell me what you want me to do");
+
+        try {
+            startActivityForResult(voice, REQ_CODE_SEND_VOICE);
+        } catch (ActivityNotFoundException ignore) {}
+    }
+
+    protected boolean send(String text) {
+        if (!connected) return false;
+
+        byte[] bytes = text.getBytes();
+
+        if (stream == null) {
+            Toast.makeText(getBaseContext(), "Something went wrong, please restart app", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        try {
+            stream.write(bytes);
+        } catch (Exception e) {
+            Toast.makeText(getBaseContext(), "Could not send, please check MAC Address is correct", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Connect to device.
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            setupConnection();
-        } else {
-            connectButton.setText(R.string.connect_button_disconnected);
+        // Handle intent callbacks (currently that is enabling connection and sending voice).
+        switch (requestCode) {
+            case REQ_CODE_ENABLE_BLUETOOTH: {
+                if (resultCode == RESULT_OK) {
+                    setupConnection();
+                } else {
+                    connectButton.setText(R.string.connect_button_disconnected);
+                }
+                break;
+            }
+
+            case REQ_CODE_SEND_VOICE: {
+                if (resultCode == RESULT_OK && data != null) {
+                     String text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
+
+                     if (send(text)) {
+                         sentText.setText(text);
+                     }
+                }
+                break;
+            }
+            default: break;
         }
     }
 
@@ -136,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        setConnected(true);
         connectButton.setText(R.string.connect_button_connected);
     }
 }
