@@ -151,25 +151,34 @@ public class MainActivity extends AppCompatActivity {
         downButton.setEnabled(value);
         walkButton.setEnabled(value);
         micButton.setEnabled(value);
+        shakeButton.setEnabled(value);
+        sitButton.setEnabled(value);
+        heyButton.setEnabled(value);
 
         if (value) {
-            standButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
-            bowButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
-            straightButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
-            downButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
-            walkButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonEnabled));
+            standButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            bowButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            straightButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            downButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            walkButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            shakeButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            sitButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+            heyButton.setTextColor(this.getResources().getColor(R.color.colorTextEnabled));
+
             micButton.setAlpha(255);
             sentText.setAlpha(1);
-
         } else {
-            standButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
-            bowButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
-            straightButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
-            downButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
-            walkButton.setBackgroundColor(this.getResources().getColor(R.color.colorButtonDisabled));
-            micButton.setAlpha(50);
-            sentText.setAlpha(0);
+            standButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            bowButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            straightButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            downButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            walkButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            shakeButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            sitButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
+            heyButton.setTextColor(this.getResources().getColor(R.color.colorTextDisabled));
 
+            micButton.setAlpha(0);
+            sentText.setAlpha(0);
             sentText.setText("");
         }
     }

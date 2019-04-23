@@ -17,7 +17,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/stand_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/bow_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/stand_button"
         app:layout_constraintTop_toTopOf="@+id/stand_button" />
@@ -47,7 +47,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/straight_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/bow_button"
         app:layout_constraintTop_toTopOf="@+id/bow_button" />
@@ -63,7 +63,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/down_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/straight_button"
         app:layout_constraintTop_toTopOf="@+id/straight_button" />
@@ -77,7 +77,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/walk_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/stand_button"
         app:layout_constraintTop_toTopOf="@+id/stand_button" />
@@ -92,7 +92,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/shake_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/walk_button"
         app:layout_constraintTop_toTopOf="@+id/walk_button" />
@@ -107,7 +107,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/sit_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/shake_button"
         app:layout_constraintTop_toTopOf="@+id/shake_button" />
@@ -122,7 +122,7 @@
         android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/hey_button"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextDisabled"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/sit_button"
         app:layout_constraintTop_toTopOf="@+id/sit_button" />
@@ -136,7 +136,7 @@
         android:textStyle="bold"
         android:minWidth="120dp"
         android:text="@string/connect_button_disconnected"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextEnabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

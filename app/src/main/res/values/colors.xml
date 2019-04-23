@@ -2,7 +2,6 @@
 <resources>
     <color name="colorBackground">#E1F5FE</color>
 
-    <color name="colorButtonDisabled">#D7D7D7</color>
-    <color name="colorButtonEnabled">#585858</color>
-    <color name="colorText">#FFF</color>
+    <color name="colorTextDisabled">#9B9B9B</color>
+    <color name="colorTextEnabled">#FFF</color>
 </resources>
