@@ -5,6 +5,9 @@
     <string name="straight_button">Straight</string>
     <string name="down_button">Down</string>
     <string name="walk_button">Walk</string>
+    <string name="shake_button">Shake</string>
+    <string name="sit_button">Sit</string>
+    <string name="hey_button">Hey</string>
 
     <string name="connect_button_connected">Disconnect</string>
     <string name="connect_button_disconnected">Connect</string>

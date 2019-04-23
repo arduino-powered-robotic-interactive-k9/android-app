@@ -4,32 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/dog_image"
-        android:layout_width="380dp"
-        android:layout_height="449dp"
-        android:layout_marginTop="112dp"
-        android:alpha="0.2"
-        android:contentDescription="@string/dog_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dog" />
 
     <Button
         android:id="@+id/stand_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="127dp"
+        android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/stand_button"
         android:textColor="@color/colorText"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +28,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="52dp"
+        android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/bow_button"
         android:textColor="@color/colorText"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/stand_button"
         app:layout_constraintTop_toTopOf="@+id/stand_button" />
 
@@ -52,10 +43,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="57dp"
+        android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/straight_button"
         android:textColor="@color/colorText"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/bow_button"
         app:layout_constraintTop_toTopOf="@+id/bow_button" />
 
@@ -66,10 +59,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/down_button"
         android:textColor="@color/colorText"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/straight_button"
         app:layout_constraintTop_toTopOf="@+id/straight_button" />
 
@@ -77,51 +72,87 @@
         android:id="@+id/walk_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginLeft="138dp"
+        android:background="@android:color/transparent"
         android:minWidth="120dp"
         android:text="@string/walk_button"
         android:textColor="@color/colorText"
-        app:layout_constraintStart_toStartOf="@+id/down_button"
-        app:layout_constraintTop_toTopOf="@+id/down_button" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/stand_button"
+        app:layout_constraintTop_toTopOf="@+id/stand_button" />
+
+    <Button
+        android:id="@+id/shake_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="52dp"
+        android:background="@android:color/transparent"
+        android:minWidth="120dp"
+        android:text="@string/shake_button"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/walk_button"
+        app:layout_constraintTop_toTopOf="@+id/walk_button" />
+
+    <Button
+        android:id="@+id/sit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="57dp"
+        android:background="@android:color/transparent"
+        android:minWidth="120dp"
+        android:text="@string/sit_button"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/shake_button"
+        app:layout_constraintTop_toTopOf="@+id/shake_button" />
+
+    <Button
+        android:id="@+id/hey_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:minWidth="120dp"
+        android:text="@string/hey_button"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/sit_button"
+        app:layout_constraintTop_toTopOf="@+id/sit_button" />
 
     <Button
         android:id="@+id/connect_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@color/colorButtonEnabled"
+        android:layout_marginTop="415dp"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
         android:minWidth="120dp"
         android:text="@string/connect_button_disconnected"
         android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/mic_button"
         android:layout_width="117dp"
         android:layout_height="143dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="108dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/mic_button"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/mic"
-        android:contentDescription="@string/mic_button" />
-
-    <TextView
-        android:id="@+id/send_message_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="@string/send_message_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mic_button" />
+        app:srcCompat="@drawable/voice" />
 
     <TextView
         android:id="@+id/sent_text"
@@ -131,10 +162,10 @@
         android:paddingLeft="40dp"
         android:paddingEnd="40dp"
         android:paddingRight="40dp"
-        android:layout_marginTop="30dp"
         android:text=""
+        android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/send_message_text" />
+        app:layout_constraintTop_toBottomOf="@+id/mic_button" />
 
 </android.support.constraint.ConstraintLayout>
